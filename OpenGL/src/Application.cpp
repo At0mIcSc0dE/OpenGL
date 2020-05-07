@@ -3,6 +3,82 @@
    
 #include <iostream>
 #include <string>
+#include <fstream>
+#include <sstream>
+
+#include <chrono>
+#include <functional>
+
+class Timer {
+public:
+    Timer(std::function<void(std::chrono::time_point<std::chrono::steady_clock>& startTime, std::chrono::time_point<std::chrono::steady_clock>& endTime)> func) {
+        this->func = func;
+    
+        startTime = std::chrono::high_resolution_clock::now();
+    }
+
+    ~Timer() {
+        endTime = std::chrono::high_resolution_clock::now();
+        func(startTime, endTime);
+    }
+
+private:
+    std::chrono::time_point<std::chrono::steady_clock> startTime;
+    std::chrono::time_point<std::chrono::steady_clock> endTime;
+    std::function<void(std::chrono::time_point<std::chrono::steady_clock>& startTime, std::chrono::time_point<std::chrono::steady_clock>& endTime)> func;
+};
+
+
+inline void PrintTimer(std::chrono::time_point<std::chrono::steady_clock>& startTime, std::chrono::time_point<std::chrono::steady_clock>& endTime){
+    std::chrono::duration<float> duration;
+    
+    duration = endTime - startTime;
+    float us = duration.count() * 1000 * 1000;
+
+    std::cout << "Timer took " << us << "us\n";
+
+}
+
+
+struct ShaderProgramSource {
+    std::string VertexSource;
+    std::string FragmentSource;
+};
+
+
+static ShaderProgramSource ParseShader(const std::string& filepath) {
+
+    enum class ShaderType {
+        None = -1, VertexShader = 0, FragmentShader = 1
+    };
+
+    std::fstream stream(filepath);
+    
+    std::string line;
+    std::stringstream ss[2];
+    ShaderType type = ShaderType::None;
+
+    while (getline(stream, line)) {
+        //Check if line contains shader token
+        if (line.find("#shader") != std::string::npos) {  //if line.find() is not a invaid position
+
+            if (line.find("vertex") != std::string::npos) {
+                type = ShaderType::VertexShader;
+            }
+            else if (line.find("fragment") != std::string::npos) {
+                type = ShaderType::FragmentShader;
+            }
+
+        }
+        else {
+            ss[(int)type] << line << '\n';
+        }
+
+    }
+
+    return { ss[0].str(), ss[1].str() };
+
+}
 
 
 static unsigned int CompileShader(unsigned int type, const char* source) {
@@ -36,6 +112,8 @@ static unsigned int CompileShader(unsigned int type, const char* source) {
 
 static unsigned int CreateShader(const std::string& vertexShader, const std::string& fragmentShader) {
 
+    Timer(std::function<void(std::chrono::time_point<std::chrono::steady_clock>& startTime, std::chrono::time_point<std::chrono::steady_clock>& endTime)>(PrintTimer));
+
     unsigned int program = glCreateProgram();
     
     unsigned int vs = CompileShader(GL_VERTEX_SHADER, vertexShader.c_str());  //or &vertexShader[0] == vertexShader.c_str();
@@ -45,7 +123,10 @@ static unsigned int CreateShader(const std::string& vertexShader, const std::str
     glAttachShader(program, fs);
 
     glLinkProgram(program);
-    //glDetachShader(vs/fs);
+    
+    glDetachShader(program, vs); //Unimplemented by TheCherno
+    glDetachShader(program, fs); //Unimplemented by TheCherno
+
     glValidateProgram(program);
 
     glDeleteShader(vs);
@@ -94,32 +175,9 @@ int main(void)
     glEnableVertexAttribArray(0);
     glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);
 
-    //Writing a shader
 
-    std::string vertexShader =
-        "#version 330 core\n"
-        "\n"
-        "layout(location = 0) in vec4 position;\n"
-        "\n"
-        "void main()\n"
-        "{\n"
-        "   gl_Position = position;\n"
-        "}\n";
-
-
-    std::string fragmentShader =
-        "#version 330 core\n"
-        "\n"
-        "layout(location = 0) out vec4 color;\n"
-        "\n"
-        "void main()\n"
-        "{\n"
-        "   color = vec4(1.0, 0.0, 0.0, 1.0);\n"
-        "}\n";
-
-
-
-    unsigned int shader = CreateShader(vertexShader, fragmentShader);
+    ShaderProgramSource source = ParseShader("res/shader/Basic.shader");
+    unsigned int shader = CreateShader(source.VertexSource, source.FragmentSource);
     glUseProgram(shader);
 
     /* Loop until the user closes the window */
