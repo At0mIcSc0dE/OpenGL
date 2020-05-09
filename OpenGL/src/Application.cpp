@@ -9,6 +9,13 @@
 #include <chrono>
 #include <functional>
 
+
+#define ASSERT(x)   if(!(x)) __debugbreak();
+#define GLCall(x)   GLClearError();\
+                    x;\
+                    ASSERT(GLLogCall(#x, __FILE__, __LINE__))
+
+
 class Timer {
 public:
     Timer(std::function<void(std::chrono::time_point<std::chrono::steady_clock>& startTime, std::chrono::time_point<std::chrono::steady_clock>& endTime)> func) {
@@ -37,6 +44,23 @@ inline void PrintTimer(std::chrono::time_point<std::chrono::steady_clock>& start
 
     std::cout << "Timer took " << us << "us\n";
 
+}
+
+
+static void GLClearError() {
+    while (glGetError() != GL_NO_ERROR);
+
+}
+
+
+static bool GLLogCall(const char* function, const char* file, unsigned int line) {
+
+    while (GLenum error = glGetError()) {
+
+        std::cout << "[OpenGL Error] (" << error << ") " << function << " " << file << ": " << line << '\n';
+        return false;
+    }
+    return true;
 }
 
 
@@ -81,6 +105,7 @@ static ShaderProgramSource ParseShader(const std::string& filepath) {
 }
 
 
+
 static unsigned int CompileShader(unsigned int type, const char* source) {
 
     unsigned int id = glCreateShader(type);
@@ -112,15 +137,15 @@ static unsigned int CompileShader(unsigned int type, const char* source) {
 
 static unsigned int CreateShader(const std::string& vertexShader, const std::string& fragmentShader) {
 
-    Timer(std::function<void(std::chrono::time_point<std::chrono::steady_clock>& startTime, std::chrono::time_point<std::chrono::steady_clock>& endTime)>(PrintTimer));
+    Timer(std::function<void(std::chrono::time_point<std::chrono::steady_clock>&, std::chrono::time_point<std::chrono::steady_clock>&)>(PrintTimer));
 
     unsigned int program = glCreateProgram();
     
     unsigned int vs = CompileShader(GL_VERTEX_SHADER, vertexShader.c_str());  //or &vertexShader[0] == vertexShader.c_str();
     unsigned int fs = CompileShader(GL_FRAGMENT_SHADER, fragmentShader.c_str());
 
-    glAttachShader(program, vs);
-    glAttachShader(program, fs);
+    GLCall(glAttachShader(program, vs));
+    GLCall(glAttachShader(program, fs));
 
     glLinkProgram(program);
     
@@ -191,13 +216,14 @@ int main(void)
     unsigned int shader = CreateShader(source.VertexSource, source.FragmentSource);
     glUseProgram(shader);
 
+
     /* Loop until the user closes the window */
     while (!glfwWindowShouldClose(window))
     {
         /* Render here */
         glClear(GL_COLOR_BUFFER_BIT);
 
-        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr); //Count = amount of indices to draw //Buffer is already bound, because of that: nullptr
+        GLCall(glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr)); //Count = amount of indices to draw //Buffer is already bound, because of that: nullptr
 
         /* Swap front and back buffers */
         glfwSwapBuffers(window);
