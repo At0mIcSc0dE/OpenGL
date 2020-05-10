@@ -167,6 +167,12 @@ int main(void)
     if (!glfwInit())
         return -1;
 
+
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+
+
     /* Create a windowed mode window and its OpenGL context */
     window = glfwCreateWindow(640, 480, "Hello World", NULL, NULL);
     if (!window)
@@ -200,6 +206,12 @@ int main(void)
         2, 3, 0
     };
 
+    //Vertex Array (Default provided with glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_COMPAT_PROFILE))
+    unsigned int vao; //Vertex-Array-Object
+    GLCall(glGenVertexArrays(1, &vao));
+    GLCall(glBindVertexArray(vao));
+
+
     //Generate VertexBuffer
     unsigned int buffer;
     GLCall(glGenBuffers(1, &buffer));
@@ -225,21 +237,26 @@ int main(void)
     ASSERT(uniformLocation != -1);
 
 
+    GLCall(glBindVertexArray(0));
+    GLCall(glUseProgram(0));
+    GLCall(glBindBuffer(GL_ARRAY_BUFFER, 0));
+    GLCall(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0));
+
+
     float r = 0.0f;
     float rIncrement = 0.05f;
-
-    float g = 0.3f;
-    float gIncrement = 0.02f;
-
-    float b = 0.8f;
-    float bIncrement = 0.005f;
     /* Loop until the user closes the window */
     while (!glfwWindowShouldClose(window))
     {
         /* Render here */
         glClear(GL_COLOR_BUFFER_BIT);
 
-        GLCall(glUniform4f(uniformLocation, r, g, b, 1.0f));
+        GLCall(glUseProgram(shader));
+        GLCall(glUniform4f(uniformLocation, r, 0.3f, 0.8f, 1.0f));
+        
+        GLCall(glBindVertexArray(vao));
+        GLCall(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo));
+        
         GLCall(glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr)); //Count = amount of indices to draw //Buffer is already bound, because of that: nullptr
 
         if (r > 1.0f)
@@ -248,17 +265,6 @@ int main(void)
             rIncrement = 0.05f;
         r += rIncrement;
 
-        if (g > 1.0f)
-            gIncrement = -0.05f;
-        else if (g < 0.0f)
-            gIncrement = 0.05f;
-        g += gIncrement;
-
-        if (b > 1.0f)
-            bIncrement = -0.05f;
-        else if (b < 0.0f)
-            bIncrement = 0.05f;
-        b += bIncrement;
 
         /* Swap front and back buffers */
         glfwSwapBuffers(window);
