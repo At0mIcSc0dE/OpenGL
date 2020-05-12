@@ -1,8 +1,6 @@
 #include "Renderer.h"
 #include "VertexBuffer.h"
-#include "IndexBuffer.h"
-#include "VertexArray.h"
-#include "Shader.h"
+#include "VertexBufferLayout.h"
 
 #include "Timer.h"
 
@@ -63,12 +61,8 @@ int main(void)
             2, 3, 0
         };
 
+        
         //Vertex Array (Default provided with glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_COMPAT_PROFILE))
-        unsigned int vao; //Vertex-Array-Object
-        GLCall(glGenVertexArrays(1, &vao));
-        GLCall(glBindVertexArray(vao));
-
-        //Make VertexArray
         VertexArray va;
         //Generate VertexBuffer
         VertexBuffer vb(positions, 4 * 2 * sizeof(float));
@@ -94,6 +88,7 @@ int main(void)
         ib.Unbind();
         shader.Unbind();
 
+        Renderer renderer;
 
         float r = 0.0f;
         float rIncrement = 0.05f;
@@ -101,15 +96,12 @@ int main(void)
         while (!glfwWindowShouldClose(window))
         {
             /* Render here */
-            glClear(GL_COLOR_BUFFER_BIT);
+            renderer.Clear();
 
             shader.Bind();
             shader.SetUniform4f("u_Color", r, 0.3f, 0.8f, 1.0f);
 
-            va.Bind();
-            ib.Bind();
-
-            GLCall(glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr)); //Count = amount of indices to draw //Buffer is already bound, because of that: nullptr
+            renderer.Draw(va, ib, shader);
 
             if (r > 1.0f)
                 rIncrement = -0.05f;

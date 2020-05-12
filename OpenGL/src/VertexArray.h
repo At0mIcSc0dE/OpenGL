@@ -1,7 +1,10 @@
 #pragma once
 
 #include "VertexBuffer.h"
-#include "VertexBufferLayout.h"
+//#include "VertexBufferLayout.h"		Not included because it includes "Renderer.h" but "Renderer.h" includes this file as well
+//Solution:
+class VertexBufferLayout;
+// + include it in .cpp file
 
 
 class VertexArray {
