@@ -27,6 +27,7 @@ public:
 	//Set uniforms
 	void SetUniform1f(const std::string& name, float value);
 	void SetUniform4f(const std::string& name, float v1, float v2, float v3, float v4);
+	void SetUniform1i(const std::string& name, int value);
 private:
 
 	ShaderProgramSource ParseShader(const std::string& filepath);
