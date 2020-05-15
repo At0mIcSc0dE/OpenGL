@@ -3,6 +3,9 @@
 #include "VertexBufferLayout.h"
 #include "Texture.h"
 
+#include "glm/glm.hpp"
+#include "glm/gtc/matrix_transform.hpp"
+
 #include "Timer.h"
 
 #include <GLFW/glfw3.h>
@@ -27,8 +30,8 @@ int main(void)
 
 
     /* Create a windowed mode window and its OpenGL context */
-    //window = glfwCreateWindow(640, 480, "Hello World", NULL, NULL);
-    window = glfwCreateWindow(1920, 1080, "Hello World", NULL, NULL);
+    window = glfwCreateWindow(960, 540, "Hello World", NULL, NULL);
+    //window = glfwCreateWindow(1920, 1080, "Hello World", NULL, NULL);
     if (!window)
     {
         glfwTerminate();
@@ -51,10 +54,10 @@ int main(void)
     {   //In its seperate scope to garantee that vb and ib are deconstructed before glfwTerminate();
         //VertexPositions + Texture coordinates
         float positions[] = {
-            -0.5f, -0.5f, 0.0f, 0.0f,   //0
-             0.5f, -0.5f, 1.0f, 0.0f,   //1
-             0.5f,  0.5f, 1.0f, 1.0f,   //2
-            -0.5f,  0.5f, 0.0f, 1.0f    //3
+            100.0f,  100.0f, 0.0f, 0.0f,   //0
+            200.0f,  100.0f, 1.0f, 0.0f,   //1
+            200.0f,  200.0f, 1.0f, 1.0f,   //2
+            100.0f,  200.0f, 0.0f, 1.0f    //3
         };
 
         //Index buffer
@@ -81,6 +84,8 @@ int main(void)
         //Assigning indexBuffer to avoid copying some vertices
         IndexBuffer ib(indices, 6);
 
+        //OpenGL assumes that the window is 1:1 ratio, our current window is 4:3 ratio -> change photo ratio to match
+        glm::mat4 proj = glm::ortho(0.0f, 960.0f, 0.0f, 540.0f, -1.0f, 1.0f);
 
         //Parsing shader from CPU to GPU
         Shader shader("res/shader/Basic.shader");
@@ -88,6 +93,7 @@ int main(void)
 
         //Accessing variable in shader from CPU
         shader.SetUniform4f("u_Color", 0.8f, 0.3f, 0.8f, 1.0f);
+        shader.SetUniformMat4f("u_MVP", proj);
 
         //Adding the texture
         Texture texture("res/textures/TestImage.png");
