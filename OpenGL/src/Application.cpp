@@ -86,6 +86,9 @@ int main(void)
 
         //OpenGL assumes that the window is 1:1 ratio, our current window is 4:3 ratio -> change photo ratio to match
         glm::mat4 proj = glm::ortho(0.0f, 960.0f, 0.0f, 540.0f, -1.0f, 1.0f);
+        glm::vec4 vp(100.0f, 100.0f, 0.0f, 1.0f);
+
+        glm::vec4 result = proj * vp;
 
         //Parsing shader from CPU to GPU
         Shader shader("res/shader/Basic.shader");
