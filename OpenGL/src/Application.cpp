@@ -1,6 +1,5 @@
-#include "Renderer.h"
-#include "VertexBuffer.h"
 #include "VertexBufferLayout.h"
+#include "VertexBuffer.h"
 #include "Texture.h"
 
 #include "glm/glm.hpp"
@@ -10,10 +9,6 @@
 
 #include <GLFW/glfw3.h>
    
-#include <string>
-#include <fstream>
-#include <sstream>
-
 
 int main(void)
 {
@@ -86,9 +81,10 @@ int main(void)
 
         //OpenGL assumes that the window is 1:1 ratio, our current window is 4:3 ratio -> change photo ratio to match
         glm::mat4 proj = glm::ortho(0.0f, 960.0f, 0.0f, 540.0f, -1.0f, 1.0f);
-        glm::vec4 vp(100.0f, 100.0f, 0.0f, 1.0f);
-
-        glm::vec4 result = proj * vp;
+        glm::mat4 view = glm::translate(glm::mat4(1.0f), glm::vec3(-100, 0, 0));
+        glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3(200, 200, 0));
+        
+        glm::mat4 mvp = proj * view * model;  //right to left multiplication in OpenGL
 
         //Parsing shader from CPU to GPU
         Shader shader("res/shader/Basic.shader");
@@ -96,7 +92,7 @@ int main(void)
 
         //Accessing variable in shader from CPU
         shader.SetUniform4f("u_Color", 0.8f, 0.3f, 0.8f, 1.0f);
-        shader.SetUniformMat4f("u_MVP", proj);
+        shader.SetUniformMat4f("u_MVP", mvp);
 
         //Adding the texture
         Texture texture("res/textures/TestImage.png");
