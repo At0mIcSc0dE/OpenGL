@@ -87,7 +87,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions);GLEW_STATIC</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\GLFW\include;$(SolutionDir)Dependencies\GLEW\include;src\vendor;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;$(SolutionDir)Dependencies\GLFW\include;$(SolutionDir)Dependencies\GLEW\include;src\vendor;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -119,7 +119,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions);GLEW_STATIC</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\GLFW\include;$(SolutionDir)Dependencies\GLEW\include;src\vendor;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;$(SolutionDir)Dependencies\GLFW\include;$(SolutionDir)Dependencies\GLEW\include;src\vendor;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -163,6 +163,7 @@
     <ClCompile Include="src\VertexArray.cpp" />
     <ClCompile Include="src\VertexBuffer.cpp" />
     <ClCompile Include="src\Texture.cpp" />
+    <ClCompile Include="src\tests\TestClearColor.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="res\shader\Basic.shader" />
@@ -282,6 +283,7 @@
     <ClInclude Include="src\Shader.h" />
     <ClInclude Include="src\IndexBuffer.h" />
     <ClInclude Include="src\Renderer.h" />
+    <ClInclude Include="src\tests\Test.hpp" />
     <ClInclude Include="src\Timer.h" />
     <ClInclude Include="src\vendor\glm\common.hpp" />
     <ClInclude Include="src\vendor\glm\detail\func_common.hpp" />
@@ -721,6 +723,7 @@
     <ClInclude Include="src\VertexBuffer.h" />
     <ClInclude Include="src\VertexBufferLayout.h" />
     <ClInclude Include="src\Texture.h" />
+    <ClInclude Include="src\tests\TestClearColor.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
