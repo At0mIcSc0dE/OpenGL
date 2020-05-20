@@ -164,6 +164,8 @@
     <ClCompile Include="src\VertexBuffer.cpp" />
     <ClCompile Include="src\Texture.cpp" />
     <ClCompile Include="src\tests\TestClearColor.cpp" />
+    <ClCompile Include="src\tests\TestUniform.cpp" />
+    <ClCompile Include="src\tests\TestRenderTexture.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="res\shader\Basic.shader" />
@@ -724,6 +726,8 @@
     <ClInclude Include="src\VertexBufferLayout.h" />
     <ClInclude Include="src\Texture.h" />
     <ClInclude Include="src\tests\TestClearColor.h" />
+    <ClInclude Include="src\tests\TestUniform.h" />
+    <ClInclude Include="src\tests\TestRenderTexture.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

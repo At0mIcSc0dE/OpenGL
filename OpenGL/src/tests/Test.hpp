@@ -1,7 +1,12 @@
 #pragma once
+#include "imgui/imgui.h"
 
 
 namespace test {
+
+	enum TestType {
+		NONE = 0, ClearColor, SetUniform4f, RenderTexture
+	};
 
 
 	class Test {

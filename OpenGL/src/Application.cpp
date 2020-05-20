@@ -3,6 +3,8 @@
 #include "Texture.h"
 
 #include "tests/TestClearColor.h"
+#include "tests/TestUniform.h"
+#include "tests/TestRenderTexture.h"
 
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
@@ -51,31 +53,85 @@ int main(void)
 
     std::cout << glGetString(GL_VERSION) << '\n';
 
-    {   
+    {
 
         //For texture rendering
         GLCall(glEnable(GL_BLEND));
         GLCall(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
 
         Renderer renderer;
+        Shader shader("res/shader/Basic.shader");
+        shader.Bind();
 
         //IMGUI
         ImGui::CreateContext();
         ImGui_ImplGlfwGL3_Init(window, true);
         ImGui::StyleColorsDark();
 
-        test::TestClearColor test;
+
+        test::TestClearColor ClearColorTest;
+        test::TestUniform Uniform4fTest;
+        test::TestRenderTexture RenderImageTest;
+        test::TestType TestType = test::NONE;
+
 
         while (!glfwWindowShouldClose(window))
         {
 
             renderer.Clear();
 
-            test.OnUpdate(0);
-            test.OnRender();
-
             ImGui_ImplGlfwGL3_NewFrame();
-            test.OnImGuiRender();
+
+            //Buttons for TestFramework
+            if (ImGui::Button("ClearColorTest"))
+            {
+                TestType = test::ClearColor;
+            }
+            else if (ImGui::Button("SetUniform4f"))
+            {
+                TestType = test::SetUniform4f;
+            }
+            else if (ImGui::Button("RenderImage"))
+            {
+                TestType = test::RenderTexture;
+            }
+
+
+            switch (TestType) {
+            case test::ClearColor:
+
+                ClearColorTest.OnUpdate(0);
+                ClearColorTest.OnRender();
+                ClearColorTest.OnImGuiRender();
+                break;
+
+            case test::SetUniform4f:
+
+                Uniform4fTest.OnImGuiRender();
+                break;
+
+            case test::RenderTexture:
+
+                RenderImageTest.OnUpdate(0);
+                RenderImageTest.OnImGuiRender();
+
+                if (ImGui::Button("SelectPath")) 
+                {
+                    const char* imagePath = RenderImageTest.GetString();
+                    std::cout << imagePath << '\n';
+
+                    //RenderImageTest.OnRender();
+
+                    Texture texture(imagePath);
+                    texture.Bind(5);
+
+                    shader.SetUniform1i("u_Texture", 5);
+                    TestType = test::NONE;
+                }
+
+                break;
+            }
+
 
             ImGui::Render();
             ImGui_ImplGlfwGL3_RenderDrawData(ImGui::GetDrawData());
