@@ -1,128 +1,114 @@
-﻿Application.obj : error LNK2019: unresolved external symbol __imp_glewInit referenced in function main
+﻿  Shader.cpp
+  Application.cpp
+  IndexBuffer.cpp
+  Renderer.cpp
+  glm.cpp
+  imgui.cpp
+  imgui_demo.cpp
+  imgui_draw.cpp
+  imgui_impl_glfw_gl3.cpp
+  stb_image.cpp
+  VertexArray.cpp
+D:\dev\Cpp\Projects\OpenGL\OpenGL\src\VertexArray.cpp(27,3): warning C4312: 'type cast': conversion from 'unsigned int' to 'const void *' of greater size
+  VertexBuffer.cpp
+  Texture.cpp
+  TestClearColor.cpp
+  TestUniform.cpp
+  TestRenderTexture.cpp
+  Generating Code...
+D:\dev\Cpp\Projects\OpenGL\OpenGL\src\VertexBufferLayout.h(19): warning C4715: 'VertexBufferElement::GetSizeOfType': not all control paths return a value
+Shader.obj : error LNK2001: unresolved external symbol __imp___glewAttachShader
+imgui_impl_glfw_gl3.obj : error LNK2001: unresolved external symbol __imp___glewAttachShader
+Shader.obj : error LNK2001: unresolved external symbol __imp___glewCompileShader
+imgui_impl_glfw_gl3.obj : error LNK2001: unresolved external symbol __imp___glewCompileShader
+Shader.obj : error LNK2001: unresolved external symbol __imp___glewCreateProgram
+imgui_impl_glfw_gl3.obj : error LNK2001: unresolved external symbol __imp___glewCreateProgram
+Shader.obj : error LNK2001: unresolved external symbol __imp___glewCreateShader
+imgui_impl_glfw_gl3.obj : error LNK2001: unresolved external symbol __imp___glewCreateShader
+Shader.obj : error LNK2001: unresolved external symbol __imp___glewDeleteProgram
+imgui_impl_glfw_gl3.obj : error LNK2001: unresolved external symbol __imp___glewDeleteProgram
+Shader.obj : error LNK2001: unresolved external symbol __imp___glewDeleteShader
+imgui_impl_glfw_gl3.obj : error LNK2001: unresolved external symbol __imp___glewDeleteShader
+Shader.obj : error LNK2001: unresolved external symbol __imp___glewDetachShader
+imgui_impl_glfw_gl3.obj : error LNK2001: unresolved external symbol __imp___glewDetachShader
+Shader.obj : error LNK2001: unresolved external symbol __imp___glewGetShaderInfoLog
+Shader.obj : error LNK2001: unresolved external symbol __imp___glewGetShaderiv
+Shader.obj : error LNK2001: unresolved external symbol __imp___glewGetUniformLocation
+imgui_impl_glfw_gl3.obj : error LNK2001: unresolved external symbol __imp___glewGetUniformLocation
+Shader.obj : error LNK2001: unresolved external symbol __imp___glewLinkProgram
+imgui_impl_glfw_gl3.obj : error LNK2001: unresolved external symbol __imp___glewLinkProgram
+Shader.obj : error LNK2001: unresolved external symbol __imp___glewShaderSource
+imgui_impl_glfw_gl3.obj : error LNK2001: unresolved external symbol __imp___glewShaderSource
+Shader.obj : error LNK2001: unresolved external symbol __imp___glewUniform1f
+Shader.obj : error LNK2001: unresolved external symbol __imp___glewUniform1i
+imgui_impl_glfw_gl3.obj : error LNK2001: unresolved external symbol __imp___glewUniform1i
+Shader.obj : error LNK2001: unresolved external symbol __imp___glewUniform4f
+TestUniform.obj : error LNK2001: unresolved external symbol __imp___glewUniform4f
+Shader.obj : error LNK2001: unresolved external symbol __imp___glewUniformMatrix4fv
+imgui_impl_glfw_gl3.obj : error LNK2001: unresolved external symbol __imp___glewUniformMatrix4fv
+Shader.obj : error LNK2001: unresolved external symbol __imp___glewUseProgram
+imgui_impl_glfw_gl3.obj : error LNK2001: unresolved external symbol __imp___glewUseProgram
+Shader.obj : error LNK2001: unresolved external symbol __imp___glewValidateProgram
+Application.obj : error LNK2019: unresolved external symbol __imp_glewInit referenced in function main
 Application.obj : error LNK2019: unresolved external symbol glfwInit referenced in function main
 Application.obj : error LNK2019: unresolved external symbol glfwTerminate referenced in function main
+Application.obj : error LNK2019: unresolved external symbol glfwWindowHint referenced in function main
 Application.obj : error LNK2019: unresolved external symbol glfwCreateWindow referenced in function main
 Application.obj : error LNK2019: unresolved external symbol glfwWindowShouldClose referenced in function main
 Application.obj : error LNK2019: unresolved external symbol glfwPollEvents referenced in function main
 Application.obj : error LNK2019: unresolved external symbol glfwMakeContextCurrent referenced in function main
 Application.obj : error LNK2019: unresolved external symbol glfwSwapBuffers referenced in function main
-Application.obj : error LNK2001: unresolved external symbol __imp___glewBindBuffer
-Application.obj : error LNK2001: unresolved external symbol __imp___glewBufferData
-Application.obj : error LNK2001: unresolved external symbol __imp___glewGenBuffers
-Application.obj : error LNK2001: unresolved external symbol __imp___glewAttachShader
-Application.obj : error LNK2001: unresolved external symbol __imp___glewCompileShader
-Application.obj : error LNK2001: unresolved external symbol __imp___glewCreateProgram
-Application.obj : error LNK2001: unresolved external symbol __imp___glewCreateShader
-Application.obj : error LNK2001: unresolved external symbol __imp___glewDeleteProgram
-Application.obj : error LNK2001: unresolved external symbol __imp___glewDeleteShader
-Application.obj : error LNK2001: unresolved external symbol __imp___glewEnableVertexAttribArray
-Application.obj : error LNK2001: unresolved external symbol __imp___glewGetShaderInfoLog
-Application.obj : error LNK2001: unresolved external symbol __imp___glewGetShaderiv
-Application.obj : error LNK2001: unresolved external symbol __imp___glewLinkProgram
-Application.obj : error LNK2001: unresolved external symbol __imp___glewShaderSource
-Application.obj : error LNK2001: unresolved external symbol __imp___glewUseProgram
-Application.obj : error LNK2001: unresolved external symbol __imp___glewValidateProgram
-Application.obj : error LNK2001: unresolved external symbol __imp___glewVertexAttribPointer
+Application.obj : error LNK2019: unresolved external symbol glfwSwapInterval referenced in function main
+IndexBuffer.obj : error LNK2001: unresolved external symbol __imp___glewBindBuffer
+imgui_impl_glfw_gl3.obj : error LNK2001: unresolved external symbol __imp___glewBindBuffer
+VertexBuffer.obj : error LNK2001: unresolved external symbol __imp___glewBindBuffer
+IndexBuffer.obj : error LNK2001: unresolved external symbol __imp___glewBufferData
+imgui_impl_glfw_gl3.obj : error LNK2001: unresolved external symbol __imp___glewBufferData
+VertexBuffer.obj : error LNK2001: unresolved external symbol __imp___glewBufferData
+IndexBuffer.obj : error LNK2001: unresolved external symbol __imp___glewDeleteBuffers
+imgui_impl_glfw_gl3.obj : error LNK2001: unresolved external symbol __imp___glewDeleteBuffers
+VertexBuffer.obj : error LNK2001: unresolved external symbol __imp___glewDeleteBuffers
+IndexBuffer.obj : error LNK2001: unresolved external symbol __imp___glewGenBuffers
+imgui_impl_glfw_gl3.obj : error LNK2001: unresolved external symbol __imp___glewGenBuffers
+VertexBuffer.obj : error LNK2001: unresolved external symbol __imp___glewGenBuffers
+imgui_impl_glfw_gl3.obj : error LNK2019: unresolved external symbol glfwGetWindowSize referenced in function "void __cdecl ImGui_ImplGlfwGL3_NewFrame(void)" (?ImGui_ImplGlfwGL3_NewFrame@@YAXXZ)
+imgui_impl_glfw_gl3.obj : error LNK2019: unresolved external symbol glfwGetFramebufferSize referenced in function "void __cdecl ImGui_ImplGlfwGL3_NewFrame(void)" (?ImGui_ImplGlfwGL3_NewFrame@@YAXXZ)
+imgui_impl_glfw_gl3.obj : error LNK2019: unresolved external symbol glfwGetWindowAttrib referenced in function "void __cdecl ImGui_ImplGlfwGL3_NewFrame(void)" (?ImGui_ImplGlfwGL3_NewFrame@@YAXXZ)
+imgui_impl_glfw_gl3.obj : error LNK2019: unresolved external symbol glfwGetInputMode referenced in function "void __cdecl ImGui_ImplGlfwGL3_NewFrame(void)" (?ImGui_ImplGlfwGL3_NewFrame@@YAXXZ)
+imgui_impl_glfw_gl3.obj : error LNK2019: unresolved external symbol glfwSetInputMode referenced in function "void __cdecl ImGui_ImplGlfwGL3_NewFrame(void)" (?ImGui_ImplGlfwGL3_NewFrame@@YAXXZ)
+imgui_impl_glfw_gl3.obj : error LNK2019: unresolved external symbol glfwGetMouseButton referenced in function "void __cdecl ImGui_ImplGlfwGL3_NewFrame(void)" (?ImGui_ImplGlfwGL3_NewFrame@@YAXXZ)
+imgui_impl_glfw_gl3.obj : error LNK2019: unresolved external symbol glfwGetCursorPos referenced in function "void __cdecl ImGui_ImplGlfwGL3_NewFrame(void)" (?ImGui_ImplGlfwGL3_NewFrame@@YAXXZ)
+imgui_impl_glfw_gl3.obj : error LNK2019: unresolved external symbol glfwSetCursorPos referenced in function "void __cdecl ImGui_ImplGlfwGL3_NewFrame(void)" (?ImGui_ImplGlfwGL3_NewFrame@@YAXXZ)
+imgui_impl_glfw_gl3.obj : error LNK2019: unresolved external symbol glfwCreateStandardCursor referenced in function "bool __cdecl ImGui_ImplGlfwGL3_Init(struct GLFWwindow *,bool,char const *)" (?ImGui_ImplGlfwGL3_Init@@YA_NPEAUGLFWwindow@@_NPEBD@Z)
+imgui_impl_glfw_gl3.obj : error LNK2019: unresolved external symbol glfwDestroyCursor referenced in function "void __cdecl ImGui_ImplGlfwGL3_Shutdown(void)" (?ImGui_ImplGlfwGL3_Shutdown@@YAXXZ)
+imgui_impl_glfw_gl3.obj : error LNK2019: unresolved external symbol glfwSetCursor referenced in function "void __cdecl ImGui_ImplGlfwGL3_NewFrame(void)" (?ImGui_ImplGlfwGL3_NewFrame@@YAXXZ)
+imgui_impl_glfw_gl3.obj : error LNK2019: unresolved external symbol glfwSetKeyCallback referenced in function "void __cdecl ImGui_ImplGlfw_InstallCallbacks(struct GLFWwindow *)" (?ImGui_ImplGlfw_InstallCallbacks@@YAXPEAUGLFWwindow@@@Z)
+imgui_impl_glfw_gl3.obj : error LNK2019: unresolved external symbol glfwSetCharCallback referenced in function "void __cdecl ImGui_ImplGlfw_InstallCallbacks(struct GLFWwindow *)" (?ImGui_ImplGlfw_InstallCallbacks@@YAXPEAUGLFWwindow@@@Z)
+imgui_impl_glfw_gl3.obj : error LNK2019: unresolved external symbol glfwSetMouseButtonCallback referenced in function "void __cdecl ImGui_ImplGlfw_InstallCallbacks(struct GLFWwindow *)" (?ImGui_ImplGlfw_InstallCallbacks@@YAXPEAUGLFWwindow@@@Z)
+imgui_impl_glfw_gl3.obj : error LNK2019: unresolved external symbol glfwSetScrollCallback referenced in function "void __cdecl ImGui_ImplGlfw_InstallCallbacks(struct GLFWwindow *)" (?ImGui_ImplGlfw_InstallCallbacks@@YAXPEAUGLFWwindow@@@Z)
+imgui_impl_glfw_gl3.obj : error LNK2019: unresolved external symbol glfwGetJoystickAxes referenced in function "void __cdecl ImGui_ImplGlfwGL3_NewFrame(void)" (?ImGui_ImplGlfwGL3_NewFrame@@YAXXZ)
+imgui_impl_glfw_gl3.obj : error LNK2019: unresolved external symbol glfwGetJoystickButtons referenced in function "void __cdecl ImGui_ImplGlfwGL3_NewFrame(void)" (?ImGui_ImplGlfwGL3_NewFrame@@YAXXZ)
+imgui_impl_glfw_gl3.obj : error LNK2019: unresolved external symbol glfwSetClipboardString referenced in function "void __cdecl ImGui_ImplGlfwGL3_SetClipboardText(void *,char const *)" (?ImGui_ImplGlfwGL3_SetClipboardText@@YAXPEAXPEBD@Z)
+imgui_impl_glfw_gl3.obj : error LNK2019: unresolved external symbol glfwGetClipboardString referenced in function "char const * __cdecl ImGui_ImplGlfwGL3_GetClipboardText(void *)" (?ImGui_ImplGlfwGL3_GetClipboardText@@YAPEBDPEAX@Z)
+imgui_impl_glfw_gl3.obj : error LNK2019: unresolved external symbol glfwGetTime referenced in function "void __cdecl ImGui_ImplGlfwGL3_NewFrame(void)" (?ImGui_ImplGlfwGL3_NewFrame@@YAXXZ)
+imgui_impl_glfw_gl3.obj : error LNK2019: unresolved external symbol glfwGetWin32Window referenced in function "bool __cdecl ImGui_ImplGlfwGL3_Init(struct GLFWwindow *,bool,char const *)" (?ImGui_ImplGlfwGL3_Init@@YA_NPEAUGLFWwindow@@_NPEBD@Z)
+imgui_impl_glfw_gl3.obj : error LNK2001: unresolved external symbol __imp___glewActiveTexture
+Texture.obj : error LNK2001: unresolved external symbol __imp___glewActiveTexture
+imgui_impl_glfw_gl3.obj : error LNK2001: unresolved external symbol __imp___glewBlendEquation
+imgui_impl_glfw_gl3.obj : error LNK2001: unresolved external symbol __imp___glewBlendFuncSeparate
+imgui_impl_glfw_gl3.obj : error LNK2001: unresolved external symbol __imp___glewBlendEquationSeparate
+imgui_impl_glfw_gl3.obj : error LNK2001: unresolved external symbol __imp___glewEnableVertexAttribArray
+VertexArray.obj : error LNK2001: unresolved external symbol __imp___glewEnableVertexAttribArray
+imgui_impl_glfw_gl3.obj : error LNK2001: unresolved external symbol __imp___glewGetAttribLocation
+imgui_impl_glfw_gl3.obj : error LNK2001: unresolved external symbol __imp___glewVertexAttribPointer
+VertexArray.obj : error LNK2001: unresolved external symbol __imp___glewVertexAttribPointer
+imgui_impl_glfw_gl3.obj : error LNK2001: unresolved external symbol __imp___glewBindSampler
+imgui_impl_glfw_gl3.obj : error LNK2001: unresolved external symbol __imp___glewBindVertexArray
+VertexArray.obj : error LNK2001: unresolved external symbol __imp___glewBindVertexArray
+imgui_impl_glfw_gl3.obj : error LNK2001: unresolved external symbol __imp___glewDeleteVertexArrays
+VertexArray.obj : error LNK2001: unresolved external symbol __imp___glewDeleteVertexArrays
+imgui_impl_glfw_gl3.obj : error LNK2001: unresolved external symbol __imp___glewGenVertexArrays
+VertexArray.obj : error LNK2001: unresolved external symbol __imp___glewGenVertexArrays
 D:\dev\Cpp\Projects\OpenGL\Dependencies\GLEW\lib\Release\Win32\glew32s.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
 D:\dev\Cpp\Projects\OpenGL\Dependencies\GLFW\lib-vc2019\\glfw3.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
-D:\dev\Cpp\Projects\OpenGL\x64\Debug\OpenGL.exe : fatal error LNK1120: 25 unresolved externals
-
-Project Performance Summary:
-      219 ms  D:\dev\Cpp\Projects\OpenGL\OpenGL\OpenGL.vcxproj   1 calls
-                219 ms  Build                                      1 calls
-
-Target Performance Summary:
-        0 ms  _BuildGenerateSourcesAction                1 calls
-        0 ms  AfterBuildGenerateSourcesEvent             1 calls
-        0 ms  ComputeLinkSwitches                        1 calls
-        0 ms  BuildCompileTraverse                       1 calls
-        0 ms  BeforeClCompile                            1 calls
-        0 ms  ComputeCLInputPDBName                      1 calls
-        0 ms  FindReferenceAssembliesForReferences       1 calls
-        0 ms  ComputeReferenceCLInput                    1 calls
-        0 ms  FixupCLCompileOptions                      1 calls
-        0 ms  MakeDirsForCl                              1 calls
-        0 ms  SelectClCompile                            1 calls
-        0 ms  MakeDirsForLink                            1 calls
-        0 ms  AfterClCompile                             1 calls
-        0 ms  _ClCompile                                 1 calls
-        0 ms  BeforeResourceCompile                      1 calls
-        0 ms  MakeDirsForResourceCompile                 1 calls
-        0 ms  AfterResourceCompile                       1 calls
-        0 ms  _ResourceCompile                           1 calls
-        0 ms  AssignTargetPaths                          1 calls
-        0 ms  ComputeManifestInputsTargets               1 calls
-        0 ms  ComputeLinkInputsFromProject               1 calls
-        0 ms  ComputeCLGeneratedLinkInputs               1 calls
-        0 ms  ComputeCLOutputs                           1 calls
-        0 ms  ComputeManifestGeneratedLinkerInputs       1 calls
-        0 ms  CreateCustomManifestResourceNames          1 calls
-        0 ms  ComputeRCGeneratedLinkInputs               1 calls
-        0 ms  BeforeLink                                 1 calls
-        0 ms  ComputeLegacyManifestEmbedding             1 calls
-        0 ms  BuildLinkTraverse                          1 calls
-        0 ms  BuildCompile                               1 calls
-        0 ms  _BuildCompileAction                        1 calls
-        0 ms  AfterBuildCompileEvent                     1 calls
-        0 ms  ComputeRCOutputs                           1 calls
-        0 ms  _Midl                                      1 calls
-        0 ms  AfterBuildGenerateSources                  1 calls
-        0 ms  ComputeMIDLGeneratedCompileInputs          1 calls
-        0 ms  _PrepareForBuild                           1 calls
-        0 ms  _PrepareForReferenceResolution             1 calls
-        0 ms  BeforeResolveReferences                    1 calls
-        0 ms  _SplitProjectReferencesByFileExistence     1 calls
-        0 ms  _GetProjectReferenceTargetFrameworkProperties   1 calls
-        0 ms  PrepareProjectReferences                   1 calls
-        0 ms  GetFrameworkPaths                          1 calls
-        0 ms  GetReferenceAssemblyPaths                  1 calls
-        0 ms  GetResolvedWinMD                           1 calls
-        0 ms  _CheckWindowsSDKInstalled                  1 calls
-        0 ms  SetCABuildNativeEnvironmentVariables       1 calls
-        0 ms  PreLinkEvent                               1 calls
-        0 ms  AfterMidl                                  1 calls
-        0 ms  ExpandSDKReferences                        1 calls
-        0 ms  ResolveSDKReferences                       1 calls
-        0 ms  PrepareResourceNames                       1 calls
-        0 ms  ResolveReferences                          1 calls
-        0 ms  BuildGenerateSourcesTraverse               1 calls
-        0 ms  BeforeBuildGenerateSources                 1 calls
-        0 ms  MakeDirsForMidl                            1 calls
-        0 ms  PreBuildEvent                              1 calls
-        0 ms  _Xsd                                       1 calls
-        0 ms  SelectCustomBuild                          1 calls
-        0 ms  AfterResolveReferences                     1 calls
-        0 ms  ComputeCustomBuildOutput                   1 calls
-        1 ms  SetTelemetryEnvironmentVariables           1 calls
-        1 ms  CopyFileToFolders                          1 calls
-        1 ms  _SelectedFiles                             1 calls
-        1 ms  AssignProjectConfiguration                 1 calls
-        1 ms  ResolveProjectReferences                   1 calls
-        1 ms  BuildGenerateSources                       1 calls
-        1 ms  CustomBuild                                1 calls
-        1 ms  WarnCompileDuplicatedFilename              1 calls
-        1 ms  SplitResourcesByCulture                    1 calls
-        1 ms  DoLinkOutputFilesMatch                     1 calls
-        1 ms  ResolveAssemblyReferences                  1 calls
-        1 ms  SetBuildDefaultEnvironmentVariables        1 calls
-        1 ms  _CheckForInvalidConfigurationAndPlatform   1 calls
-        2 ms  InitializeBuildStatus                      1 calls
-        7 ms  PrepareForBuild                            1 calls
-        8 ms  ClCompile                                  1 calls
-      186 ms  Link                                       1 calls
-
-Task Performance Summary:
-        0 ms  Message                                    2 calls
-        0 ms  MSBuild                                    1 calls
-        0 ms  MakeDir                                    7 calls
-        0 ms  CheckVCToolsetVersion                      1 calls
-        0 ms  ReadLinesFromFile                          1 calls
-        0 ms  AssignTargetPath                           4 calls
-        0 ms  AssignCulture                              1 calls
-        1 ms  WriteLinesToFile                           1 calls
-        1 ms  AssignProjectConfiguration                 1 calls
-        1 ms  Touch                                      1 calls
-        2 ms  SetEnv                                     8 calls
-        2 ms  GetOutOfDateItems                          3 calls
-        8 ms  CL                                         1 calls
-      186 ms  Link                                       1 calls
+D:\dev\Cpp\Projects\OpenGL\x64\Debug\OpenGL.exe : fatal error LNK1120: 64 unresolved externals

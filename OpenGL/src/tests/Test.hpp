@@ -5,7 +5,7 @@
 namespace test {
 
 	enum TestType {
-		NONE = 0, ClearColor, SetUniform4f, RenderTexture
+		NONE = 0, ClearColor, SetUniform4f, RenderTexture, RenderCube
 	};
 
 

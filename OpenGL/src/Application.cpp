@@ -5,6 +5,7 @@
 #include "tests/TestClearColor.h"
 #include "tests/TestUniform.h"
 #include "tests/TestRenderTexture.h"
+#include "tests/TestRenderCube.h"
 
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
@@ -61,7 +62,9 @@ int main(void)
 
         Renderer renderer;
         Shader shader("res/shader/Basic.shader");
+        Texture texture("res/textures/TestImage.png");
         shader.Bind();
+        texture.Bind();
 
         //IMGUI
         ImGui::CreateContext();
@@ -72,6 +75,7 @@ int main(void)
         test::TestClearColor ClearColorTest;
         test::TestUniform Uniform4fTest;
         test::TestRenderTexture RenderImageTest;
+        test::TestRenderCube RenderCubeTest;
         test::TestType TestType = test::NONE;
 
 
@@ -91,27 +95,32 @@ int main(void)
             {
                 TestType = test::SetUniform4f;
             }
-            else if (ImGui::Button("RenderImage"))
+            else if (ImGui::Button("RenderCube"))
+            {
+                TestType = test::RenderCube;
+            }
+            else if (ImGui::Button("RenderTexture"))
             {
                 TestType = test::RenderTexture;
             }
 
-
             switch (TestType) {
             case test::ClearColor:
-
                 ClearColorTest.OnUpdate(0);
                 ClearColorTest.OnRender();
                 ClearColorTest.OnImGuiRender();
                 break;
 
             case test::SetUniform4f:
-
                 Uniform4fTest.OnImGuiRender();
                 break;
 
-            case test::RenderTexture:
+            case test::RenderCube:
+                RenderCubeTest.OnUpdate(0);
+                RenderCubeTest.OnImGuiRender();
+                break;
 
+            case test::RenderTexture:
                 RenderImageTest.OnUpdate(0);
                 RenderImageTest.OnImGuiRender();
 
@@ -122,11 +131,11 @@ int main(void)
 
                     //RenderImageTest.OnRender();
 
-                    Texture texture(imagePath);
+                    texture = Texture(imagePath);
                     texture.Bind(5);
 
                     shader.SetUniform1i("u_Texture", 5);
-                    TestType = test::NONE;
+                    //TestType = test::NONE;
                 }
 
                 break;
