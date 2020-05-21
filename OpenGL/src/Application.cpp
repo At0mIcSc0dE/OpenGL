@@ -75,8 +75,12 @@ int main(void)
         test::TestClearColor ClearColorTest;
         test::TestUniform Uniform4fTest;
         test::TestRenderTexture RenderImageTest;
-        test::TestRenderCube RenderCubeTest;
+        test::TestRenderCube RenderCubeTest(renderer, shader);
         test::TestType TestType = test::NONE;
+
+
+        shader.Unbind();
+        texture.Unbind();
 
 
         while (!glfwWindowShouldClose(window))
@@ -118,6 +122,7 @@ int main(void)
             case test::RenderCube:
                 RenderCubeTest.OnUpdate(0);
                 RenderCubeTest.OnImGuiRender();
+                RenderCubeTest.OnRender();
                 break;
 
             case test::RenderTexture:
@@ -154,7 +159,6 @@ int main(void)
 
     ImGui_ImplGlfwGL3_Shutdown();
     ImGui::DestroyContext();
-
 
 
     glfwTerminate();
