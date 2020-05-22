@@ -1,2 +1,3 @@
-﻿  Application.cpp
-  OpenGL.vcxproj -> D:\dev\Cpp\Projects\OpenGL\Debug\OpenGL.exe
+﻿  TestTexture2D.cpp
+C:\dev\Cpp\Projects\OpenGL\OpenGL\src\VertexBufferLayout.h(19): warning C4715: 'VertexBufferElement::GetSizeOfType': not all control paths return a value
+  OpenGL.vcxproj -> C:\dev\Cpp\Projects\OpenGL\Debug\OpenGL.exe
