@@ -2,10 +2,8 @@
 #include "VertexBuffer.h"
 #include "Texture.h"
 
+#include "tests/Test.h"
 #include "tests/TestClearColor.h"
-#include "tests/TestUniform.h"
-#include "tests/TestRenderTexture.h"
-#include "tests/TestRenderCube.h"
 
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
@@ -61,10 +59,6 @@ int main(void)
         GLCall(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
 
         Renderer renderer;
-        Shader shader("res/shader/Basic.shader");
-        Texture texture("res/textures/TestImage.png");
-        shader.Bind();
-        texture.Bind();
 
         //IMGUI
         ImGui::CreateContext();
@@ -72,80 +66,35 @@ int main(void)
         ImGui::StyleColorsDark();
 
 
-        test::TestClearColor ClearColorTest;
-        test::TestUniform Uniform4fTest;
-        test::TestRenderTexture RenderImageTest;
-        test::TestRenderCube RenderCubeTest(renderer, shader);
-        test::TestType TestType = test::NONE;
+        test::Test* currentTest = nullptr;
+        test::TestMenu* testMenu = new test::TestMenu(currentTest);
+        currentTest = testMenu;
 
-
-        shader.Unbind();
-        texture.Unbind();
-
+        testMenu->RegisterTest<test::TestClearColor>("Clear Color");
 
         while (!glfwWindowShouldClose(window))
         {
 
+            renderer.SetClearColor();
             renderer.Clear();
 
             ImGui_ImplGlfwGL3_NewFrame();
 
-            //Buttons for TestFramework
-            if (ImGui::Button("ClearColorTest"))
+            if (currentTest)
             {
-                TestType = test::ClearColor;
-            }
-            else if (ImGui::Button("SetUniform4f"))
-            {
-                TestType = test::SetUniform4f;
-            }
-            else if (ImGui::Button("RenderCube"))
-            {
-                TestType = test::RenderCube;
-            }
-            else if (ImGui::Button("RenderTexture"))
-            {
-                TestType = test::RenderTexture;
-            }
+                currentTest->OnUpdate(0.0f);
+                currentTest->OnRender();
+                ImGui::Begin("Test");
 
-            switch (TestType) {
-            case test::ClearColor:
-                ClearColorTest.OnUpdate(0);
-                ClearColorTest.OnRender();
-                ClearColorTest.OnImGuiRender();
-                break;
-
-            case test::SetUniform4f:
-                Uniform4fTest.OnImGuiRender();
-                break;
-
-            case test::RenderCube:
-                RenderCubeTest.OnUpdate(0);
-                RenderCubeTest.OnImGuiRender();
-                RenderCubeTest.OnRender();
-                break;
-
-            case test::RenderTexture:
-                RenderImageTest.OnUpdate(0);
-                RenderImageTest.OnImGuiRender();
-
-                if (ImGui::Button("SelectPath")) 
+                if (currentTest != testMenu && ImGui::Button("<-"))
                 {
-                    const char* imagePath = RenderImageTest.GetString();
-                    std::cout << imagePath << '\n';
-
-                    //RenderImageTest.OnRender();
-
-                    texture = Texture(imagePath);
-                    texture.Bind(5);
-
-                    shader.SetUniform1i("u_Texture", 5);
-                    //TestType = test::NONE;
+                    delete currentTest;
+                    currentTest = testMenu;
                 }
+                currentTest->OnImGuiRender();
 
-                break;
+                ImGui::End();
             }
-
 
             ImGui::Render();
             ImGui_ImplGlfwGL3_RenderDrawData(ImGui::GetDrawData());
@@ -155,6 +104,9 @@ int main(void)
             glfwPollEvents();
         }
 
+        delete currentTest;
+        if(currentTest != testMenu)
+            delete testMenu;
     }
 
     ImGui_ImplGlfwGL3_Shutdown();

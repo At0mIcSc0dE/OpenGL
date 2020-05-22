@@ -1,5 +1,2 @@
 ﻿  Application.cpp
-  TestRenderCube.cpp
-  Generating Code...
-D:\dev\Cpp\Projects\OpenGL\OpenGL\src\VertexBufferLayout.h(19): warning C4715: 'VertexBufferElement::GetSizeOfType': not all control paths return a value
   OpenGL.vcxproj -> D:\dev\Cpp\Projects\OpenGL\Debug\OpenGL.exe

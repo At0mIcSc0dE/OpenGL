@@ -22,7 +22,7 @@ class Renderer {
 
 public:
     void Clear() const;
-
+    void SetClearColor(float v1 = 0.0f, float v2 = 0.0f, float v3 = 0.0f, float v4 = 0.0f) const;
     void Draw(const VertexArray& va, const IndexBuffer& ib, const Shader& shader) const;
 
 };
